@@ -86,9 +86,7 @@ read -p "Selecione uma das opções: " USERSHELL
 				;;
 	esac
 
-
 USERSHELL=$(grep $USUARIO /etc/passwd | cut -d":" -f7)
-
 #Criando o cabeçalho de saida
 echo ""
 echo -e "USUARIO\t\t       NOME\t\t        SHELL PADRÃO"
