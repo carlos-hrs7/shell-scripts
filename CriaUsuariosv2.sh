@@ -16,7 +16,7 @@
 
 clear
 echo ""
-echo ""$0" - Script para criação de novos usuários no Linux ...."
+echo " - Script para criação de novos usuários no Linux ...."
 echo ""
 read -p "Digite nome de Login para o novo usuário: " USUARIO
 read -p "Digite o nome completo do novo usuário: " NOME
