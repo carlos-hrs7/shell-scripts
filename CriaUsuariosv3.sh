@@ -108,7 +108,7 @@ read -p "Selecione uma das opções: " SHELLUSER
 				;;
 	esac
 
-# Váriaveis SHELLUSER e HOMEUSER recebem um novo valor
+# Váriaveis SHELLUSER e HOMEUSER recebem novos valores
 SHELLUSER=$(grep $USUARIO /etc/passwd | cut -d":" -f7)
 
 if [ $HOMEUSER = S -o $HOMEUSER = s ] 
@@ -141,7 +141,8 @@ read -p "Deseja cadastrar uma senha para o novo usuário criado? (S/n):" OPCAO
 		echo "Você optou por não cadastrar uma nova senha para o usuário $USUARIO"
 	
 	else
-		echo "Opção Inválida! você deve escolher Sim ou Não" 
+		echo "Opção Inválida! você deve escolher Sim ou Não"
+	       	echo "Senha não cadastrada."	
 		
 	fi
 
