@@ -45,13 +45,13 @@ then
 			echo "Verificando se já existe um grupo para o novo usuário ...."
 			sleep 2 
 	
-			if [ "$USUARIO" = "$FILTRO2" ] #condicional, se var USUARIO for igual a var FILTRO2, não cria o usuário
+			if [ "$USUARIO" = "$FILTRO2" ] #condicional, se var USUARIO for igual a var FILTRO2, não cria o usuário.
 			then
 				echo ""
 				echo "Já existe no sistema um grupo com este nome! "
 				echo "Finalizando o sistema ...."
 				exit 2
-			else #Se as duas condicionais acima forem falsas, então crie o novo usuário e grupo, proxima etapa do script
+			else #Se as duas condicionais acima forem falsas, então crie o novo usuário e grupo.
 
 				echo ""
 				echo "Usuário não existe no sistema, será criado o novo usuário e um grupo para ele ...."
