@@ -42,7 +42,7 @@ then
 
 fi
 
-read -p "Deseja Criar o diretório HOME para o novo usuário? (S/n): " HOMEUSER
+read -p "Deseja Criar o diretório HOME para o novo usuário? (S/n):" HOMEUSER
 
 	if [ $HOMEUSER = S -o $HOMEUSER = s ] 
 	then
@@ -77,7 +77,7 @@ echo " 3 - /bin/bash "
 echo " 4 - /bin/rbash "
 echo " 5 - /bin/ksh "
 echo " 6 - /bin/zsh "
-echo " 7 - Sem Shell "
+echo " 7 -  Nenhum "
 echo ""
 read -p "Selecione uma das opções: " SHELLUSER
 
