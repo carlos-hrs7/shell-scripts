@@ -28,28 +28,30 @@ echo ""
 echo "Verificando se o usuário já existe no sistema ...."
 sleep 2
 
-if FILTRO=$(grep $USUARIO /etc/passwd | cut -d":" -f1)
+#Condicional com comparação de strings
+
+if FILTRO=$(grep $USUARIO /etc/passwd | cut -d":" -f1) #Verificando no arquivo /etc/passwd se já existe o usuário
 then
-		if [ "$USUARIO" = "$FILTRO" ] 
+		if [ "$USUARIO" = "$FILTRO" ]  #condicional, se var USUARIO for igual a var FILTRO, não cria o novo usuário
 		then
 		
 			echo "Já existe um usuário no sistema com este nome! "
 			echo "Finalizando o sistema ...."
 			exit 1
 			
-		elif FILTRO2=$(grep $USUARIO /etc/group | cut -d":" -f1)
+		elif FILTRO2=$(grep $USUARIO /etc/group | cut -d":" -f1) #Verificando no arquivo /etc/group se já existe o grupo
 		then
 		
 			echo "Verificando se já existe um grupo para o novo usuário ...."
 			sleep 2 
 	
-			if [ "$USUARIO" = "$FILTRO2" ] 
+			if [ "$USUARIO" = "$FILTRO2" ] #condicional, se var USUARIO for igual a var FILTRO2, não cria o usuário
 			then
 				echo ""
 				echo "Já existe no sistema um grupo com este nome! "
 				echo "Finalizando o sistema ...."
 				exit 2
-			else
+			else #Se as duas condicionais acima forem falsas, então crie o novo usuário e grupo, proxima etapa do script
 
 				echo ""
 				echo "Usuário não existe no sistema, será criado o novo usuário e um grupo para ele ...."
@@ -62,14 +64,14 @@ fi
 #Recebendo entrada para criação do diretorio home do usuário, por padrão o sistema não cria o home.
 read -p "Deseja Criar o diretório HOME para o novo usuário? (S/n):" HOMEUSER
 
-	if [ $HOMEUSER = S -o $HOMEUSER = s ] 
+	if [ $HOMEUSER = S -o $HOMEUSER = s ] #condicional, se S ou s cria o usuario com o diretorio  home padrão 
 	then
 		echo ""
 		echo "Criando o usuário no sistema com diretório home padrão ...."
 		useradd $USUARIO -c "$NOME" -m
 		echo ""
 		echo "Usuário criado com Sucesso!"
-	elif [ $HOMEUSER = N -o $HOMEUSER = n ]
+	elif [ $HOMEUSER = N -o $HOMEUSER = n ] #condicional, se N ou n cria o usuario sem o diretorio home padrão
 	then
 		echo ""
 		echo "Criando o usuário no sistema ...."
@@ -77,7 +79,7 @@ read -p "Deseja Criar o diretório HOME para o novo usuário? (S/n):" HOMEUSER
 		useradd $USUARIO -c "$NOME"
 		echo ""
 		echo "Usuário criado com Sucesso!"
-	else
+	else  
 
 		echo ""
 		echo "Opção Inválida!"
@@ -167,7 +169,7 @@ read -p "Deseja cadastrar uma senha para o novo usuário criado? (S/n):" OPCAO
 		
 	fi
 
-#FIM DO SCRIPT
+#Finalizando o script ....
 echo ""
 echo "Operação Concluída!"
 echo ""
