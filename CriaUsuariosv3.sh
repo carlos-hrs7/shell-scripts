@@ -25,7 +25,7 @@ echo ""
 echo "Verificando se o usuário já existe no sistema ...."
 sleep 2
 
-if FILTRO=$(grep $USUARIO /etc/passwd | cut -d":" -f1)
+if FILTRO=$(grep $USUARIO /etc/passwd | cut -d":" -f1 && grep $USUARIO /etc/group | cut -d":" -f1)
 then
 		if [ "$USUARIO" = "$FILTRO" ] 
 		then
