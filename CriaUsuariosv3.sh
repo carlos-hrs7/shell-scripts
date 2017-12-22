@@ -18,9 +18,12 @@ clear
 echo ""
 echo ""$0" - Script para criação de novos usuários no Linux ...."
 echo ""
+
+#Recebendo entrada do nome de login e nome completo para o novo usuario
 read -p "Digite nome de Login para o novo usuário: " USUARIO
 read -p "Digite o nome completo do novo usuário: " NOME
 
+#Verificando se existe usuário e grupo com o mesmo nome inserido
 echo ""
 echo "Verificando se o usuário já existe no sistema ...."
 sleep 2
@@ -56,6 +59,7 @@ then
 
 fi
 
+#Recebendo entrada para criação do diretorio home do usuário, por padrão o sistema não cria o home.
 read -p "Deseja Criar o diretório HOME para o novo usuário? (S/n):" HOMEUSER
 
 	if [ $HOMEUSER = S -o $HOMEUSER = s ] 
@@ -81,7 +85,7 @@ read -p "Deseja Criar o diretório HOME para o novo usuário? (S/n):" HOMEUSER
 		exit 2
 	fi
 
-
+#Recebendo entrada para o shell padrão do novo usuário
 echo ""
 echo "Escolha um Shell de sua preferência: "
 echo ""
@@ -93,6 +97,7 @@ echo " 5 - /bin/ksh "
 echo " 6 - /bin/zsh "
 echo " 7 -  Nenhum "
 echo ""
+#Condicionais com o case, a variavel SHELLUSER receberá um novo valor dependendo da opção escolhida no menu
 read -p "Selecione uma das opções: " SHELLUSER
 
 	case $SHELLUSER in
@@ -138,11 +143,13 @@ then
 
 fi
 
-#Criando o cabeçalho de saida
+#Criando o cabeçalho de saida com as variaveis declaradas no script
 echo ""
 echo -e "USUARIO\t\t       NOME\t\t        SHELL PADRÃO\t\t   HOME PADRÃO"
 echo -e "$USUARIO\t\t$NOME\t\t$SHELLUSER\t\t$HOMEUSER"
 
+#Recendo entrada para criação de senha para o novo usuário.
+#Condicional, opção S ou s para criar ou N ou n para não criar, em branco é opção invalida, senha não será criada.
 echo ""
 read -p "Deseja cadastrar uma senha para o novo usuário criado? (S/n):" OPCAO
 
@@ -160,6 +167,7 @@ read -p "Deseja cadastrar uma senha para o novo usuário criado? (S/n):" OPCAO
 		
 	fi
 
+#FIM DO SCRIPT
 echo ""
 echo "Operação Concluída!"
 echo ""
