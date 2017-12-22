@@ -25,19 +25,33 @@ echo ""
 echo "Verificando se o usuário já existe no sistema ...."
 sleep 2
 
-if FILTRO=$(grep $USUARIO /etc/passwd | cut -d":" -f1 && grep $USUARIO /etc/group | cut -d":" -f1)
+if FILTRO=$(grep $USUARIO /etc/passwd | cut -d":" -f1)
 then
 		if [ "$USUARIO" = "$FILTRO" ] 
 		then
 		
-			echo "Usuário já existe no sistema ...."
+			echo "Já existe um usuário no sistema com este nome! "
 			echo "Finalizando o sistema ...."
 			exit 1
 			
-		else
-			echo ""
-			echo "Usuário não existe no sistema, será criado agora ...."
-			echo ""
+		elif FILTRO2=$(grep $USUARIO /etc/group | cut -d":" -f1)
+		then
+		
+			echo "Verificando se já existe um grupo para o novo usuário ...."
+			sleep 2 
+	
+			if [ "$USUARIO" = "$FILTRO2" ] 
+			then
+				echo ""
+				echo "Já existe no sistema um grupo com este nome! "
+				echo "Finalizando o sistema ...."
+				exit 2
+			else
+
+				echo ""
+				echo "Usuário não existe no sistema, será criado o novo usuário e um grupo para ele ...."
+				echo ""
+			fi
 		fi
 
 fi
