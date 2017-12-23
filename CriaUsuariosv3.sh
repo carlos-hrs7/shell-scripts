@@ -84,7 +84,7 @@ read -p "Deseja Criar o diretório HOME para o novo usuário? (S/n):" HOMEUSER
 		echo ""
 		echo "Opção Inválida!"
 		echo "Finalizando o Sistema ...."
-		exit 2
+		exit 3
 	fi
 
 #Recebendo entrada para o shell padrão do novo usuário
@@ -165,7 +165,7 @@ read -p "Deseja cadastrar uma senha para o novo usuário criado? (S/n):" OPCAO
 	
 	else
 		echo "Opção Inválida! você deve escolher Sim ou Não"
-	       	echo "Senha não cadastrada."	
+	       	echo "Senha não cadastrada para o $USUARIO."	
 		
 	fi
 
