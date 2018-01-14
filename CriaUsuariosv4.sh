@@ -7,7 +7,7 @@
 # Autor: Carlos Henrique Rezende Silva (carlos.professionalti@gmail.com)	#
 # Data: 13/01/2018								#
 #										#
-# Descrição: Script para criação e exclusão de usuários no			#
+# Descrição: Script para criação e exclusão de usuários no Linux		#
 #            									#
 #										#
 # Uso: source CriaUsuariosv4.sh ou ./CriaUsuariosv4.sh				#
