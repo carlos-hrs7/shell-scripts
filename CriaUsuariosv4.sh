@@ -224,7 +224,7 @@ then
 elif [ $HOMEUSER = N -o $HOMEUSER = n ]
 then
 
-	HOMEUSER="N�o foi criado"
+	HOMEUSER="Não foi criado"
 
 fi
 
