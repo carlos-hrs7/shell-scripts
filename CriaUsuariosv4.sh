@@ -30,6 +30,7 @@ echo ""
 
 read -p "Opcao Selecionada: " MENU
 echo ""
+
 #Inicia a condicional de exclusao 
 if [ $MENU = E -o $MENU = e ] 
 then
@@ -82,24 +83,24 @@ then
 		fi
 fi
 
-		#Inicia a condicional de criacao
-		if [ $MENU = C -o $MENU  = c ] 
-		then
-			echo "Etapa de Criacao selecionada ...."
-			echo ""
+#Inicia a condicional de criacao
+if [ $MENU = C -o $MENU  = c ] 
+then
+	echo "Etapa de Criacao selecionada ...."
+	echo ""
 
-		elif [ $MENU = S -o $MENU = s ]
-		then
+	elif [ $MENU = S -o $MENU = s ]
+	then
 
-			echo "Voce optou por finalizar o sistema ...."
-			echo ""
-			exit 0
-		else
-			echo "Opcao invalida! ...."
-			echo "O sistema sera finalizado agora ...."
-			echo ""
-			exit 6 
-		fi
+		echo "Voce optou por finalizar o sistema ...."
+		echo ""
+		exit 0
+	else
+		echo "Opcao invalida! ...."
+		echo "O sistema sera finalizado agora ...."
+		echo ""
+		exit 6 
+fi
 
 
 #Recebendo entrada do nome de login e nome completo para o novo usuario
