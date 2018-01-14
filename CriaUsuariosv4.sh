@@ -89,6 +89,7 @@ then
 	echo "Etapa de Criacao selecionada ...."
 	echo ""
 
+	#Inicia a condicional de saida
 	elif [ $MENU = S -o $MENU = s ]
 	then
 
