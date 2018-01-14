@@ -7,7 +7,7 @@
 # Autor: Carlos Henrique Rezende Silva (carlos.professionalti@gmail.com)	#
 # Data: 13/01/2018								#
 #										#
-# Descrição: Script para criação e exclusão de usuários no Linux		#
+# Descrição: Script para gerencia de contas de usuários no Linux		#
 #            									#
 #										#
 # Uso: source CriaUsuariosv4.sh ou ./CriaUsuariosv4.sh				#
@@ -17,10 +17,10 @@
 
 clear
 echo ""
-echo " -------------------- Gerenciador de Usuarios e Grupos no Linux -------------------- "
+echo " -------------------- Gerenciador de Usuários e Grupos no Linux -------------------- "
 echo ""
 
-echo "Selecione uma das Opcoes a seguir: "
+echo "Selecione uma das Opções a seguir: "
 echo ""
 
 echo "[C] Criar:"
@@ -28,79 +28,85 @@ echo "[E] Excluir:"
 echo "[S] Sair:"
 echo ""
 
-read -p "Opcao Selecionada: " MENU
+read -p "Opção Selecionada: " MENU
 echo ""
 
 #Inicia a condicional de exclusao 
 if [ $MENU = E -o $MENU = e ] 
 then
 
-	echo "Etapa de Exclusao selecionada ...." #comandos de exclusao
+	echo "Opção de Exclusão selecionada ...." #comandos de exclusao
 	echo ""
- 	read -p "Digite nome de Login do usuario: " USERDEL
+ 	read -p "Digite nome de Login do usuário: " USERDEL
 	echo ""
-	echo "Verificando se o usuario existe no sistema ...."
+	echo "Verificando se o usuário existe no sistema ...."
 	echo ""
-	sleep 2
+	sleep 1
 
   		if FILTER=$(grep $USERDEL /etc/passwd | cut -d":" -f1)
 		then
 
 			if [ "$USERDEL" != "$FILTER" ]
 			then
-				echo "Este usuario nao existe no sistema ..."
+				echo "Este usuário não existe no sistema ..."
 				echo ""
-				echo "Finalizando o sistema ...."
+				echo "O sistema será finalizado ...."
 				exit 0
 			else
-				echo "Este usuario existe no sistema e sera excluido agora ...."
+				echo "Este usuário existe no sistema e será excluido agora ...."
+				sleep 1
 				echo ""
 			fi
 			
-			read -p "Voce deseja excluir o usuario e seu diretorio HOME? [S/n]: " HOMEDEL
+			read -p "Voce deseja excluir o usuário e seu diretório HOME? [S/n]: " HOMEDEL
 			echo ""
 		       		
 				if [ $HOMEDEL = S -o $HOMEDEL = s ] 
 				then
-					echo "O usuario selecionado e seu diretorio HOME serao excluidos do sistema ...."
+					echo "O usuário selecionado e seu diretório HOME serão excluidos do sistema ...."
 					echo ""
-					sleep 2
+					sleep 1
 					userdel -r $USERDEL
+					echo "Operação Concluída! "
+					echo ""
 					exit 0 
 
 					elif [ $HOMEDEL = N -o $HOMEDEL = n ]
 					then
-						echo "O usuario selecionado sera excluido e seu diretorio HOME sera mantido ...."
+						echo "O usuário selecionado será excluido e seu diretório HOME será mantido ...."
 						echo ""
 						userdel $USERDEL
-						sleep 2
+						sleep 1
+						echo "Operação Concluída! "
+						echo ""
 						exit 0 
-				else
-					echo "Opcao invalida! ..."
-					echo "Sistema sera finalizado agora ...."
-					exit 6
+					else
+						echo "Opção inválida! ..."
+						echo "O sistema será finalizado agora ...."
+						exit 6
 				fi
 		fi
+
 fi
 
 #Inicia a condicional de criacao
 if [ $MENU = C -o $MENU  = c ] 
 then
-	echo "Etapa de Criacao selecionada ...."
+	echo "Opção de Criação selecionada ...."
 	echo ""
 
 	#Inicia a condicional de saida
 	elif [ $MENU = S -o $MENU = s ]
 	then
 
-		echo "Voce optou por finalizar o sistema ...."
+		echo "Você optou por finalizar o sistema ...."
 		echo ""
 		exit 0
 	else
-		echo "Opcao invalida! ...."
-		echo "O sistema sera finalizado agora ...."
+		echo "Opção inválida! ...."
+		echo "O sistema será finalizado agora ...."
 		echo ""
-		exit 6 
+		exit 7	 
 fi
 
 
@@ -111,7 +117,7 @@ read -p "Digite o nome completo do novo usuário: " NOME
 #Verificando se existe usuário e grupo com o mesmo nome inserido
 echo ""
 echo "Verificando se o usuário já existe no sistema ...."
-sleep 2
+sleep 1
 
 #Condicional com comparação de strings
 
@@ -128,14 +134,14 @@ then
 		then
 		
 			echo "Verificando se já existe um grupo para o novo usuário ...."
-			sleep 2 
+			sleep 1
 	
 			if [ "$USUARIO" = "$FILTRO2" ] #condicional, se var USUARIO for igual a var FILTRO2, não cria o usuário.
 			then
 				echo ""
 				echo "Já existe no sistema um grupo com este nome! "
 				echo "Finalizando o sistema ...."
-				exit 2
+				exit 1
 			else #Se as duas condicionais acima forem falsas, então crie o novo usuário e grupo.
 
 				echo ""
@@ -147,7 +153,7 @@ then
 fi
 
 #Recebendo entrada para criação do diretorio home do usuário, por padrão o sistema não cria o home.
-read -p "Deseja Criar o diretório HOME para o novo usuário? (S/n):" HOMEUSER
+read -p "Deseja Criar o diretório HOME para o novo usuário? (S/n): " HOMEUSER
 
 	if [ $HOMEUSER = S -o $HOMEUSER = s ] #condicional, se S ou s cria o usuario com o diretorio  home padrão 
 	then
@@ -156,6 +162,7 @@ read -p "Deseja Criar o diretório HOME para o novo usuário? (S/n):" HOMEUSER
 		useradd $USUARIO -c "$NOME" -m
 		echo ""
 		echo "Usuário criado com Sucesso!"
+
 	elif [ $HOMEUSER = N -o $HOMEUSER = n ] #condicional, se N ou n cria o usuario sem o diretorio home padrão
 	then
 		echo ""
@@ -238,7 +245,7 @@ echo -e "$USUARIO\t\t$NOME\t\t$SHELLUSER\t\t$HOMEUSER"
 #Recendo entrada para criação de senha para o novo usuário.
 #Condicional, opção S ou s para criar ou N ou n para não criar, em branco é opção invalida, senha não será criada.
 echo ""
-read -p "Deseja cadastrar uma senha para o novo usuário criado? (S/n):" OPCAO
+read -p "Deseja cadastrar uma senha para o novo usuário criado? (S/n): " OPCAO
 
 	if [ $OPCAO = S -o $OPCAO = s ]
 	then
